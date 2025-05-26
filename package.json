@@ -1,5 +1,5 @@
 {
-  "name": "apodixiqr-backend2",
+  "name": "apodixiqr-backend",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -8,5 +8,8 @@
   "dependencies": {
     "express": "^4.18.2",
     "puppeteer": "^21.3.8"
+  },
+  "engines": {
+    "node": "18.x"
   }
 }

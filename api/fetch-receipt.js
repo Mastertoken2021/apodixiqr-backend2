@@ -17,7 +17,7 @@ module.exports = async function (req, res) {
     await page.goto(url, { waitUntil: 'networkidle2', timeout: 60000 });
 
     const text = await page.evaluate(() => document.body.innerText);
-    const lines = text.split('\n').filter(l => /\d+[,\\.]\d{2}/.test(l));
+    const lines = text.split('\n').filter(l => /\d+[,\.]\d{2}/.test(l));
     const items = lines.map(line => {
       const parts = line.trim().split(/\s+/);
       const price = parseFloat(parts.pop().replace(',', '.'));

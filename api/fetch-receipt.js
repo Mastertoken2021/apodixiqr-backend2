@@ -10,14 +10,14 @@ module.exports = async function (req, res) {
   try {
     const browser = await puppeteer.launch({
       headless: true,
-      args: ['--no-sandbox', '--disable-setuid-sandbox'],
+      args: ['--no-sandbox', '--disable-setuid-sandbox']
     });
 
     const page = await browser.newPage();
     await page.goto(url, { waitUntil: 'networkidle2', timeout: 60000 });
 
     const text = await page.evaluate(() => document.body.innerText);
-    const lines = text.split('\n').filter(l => /\d+[,\.]\d{2}/.test(l));
+    const lines = text.split('\n').filter(l => /\d+[,\\.]\d{2}/.test(l));
     const items = lines.map(line => {
       const parts = line.trim().split(/\s+/);
       const price = parseFloat(parts.pop().replace(',', '.'));
@@ -32,7 +32,7 @@ module.exports = async function (req, res) {
       storeName: 'Epsilon Digital',
       date: new Date().toLocaleDateString('el-GR'),
       items,
-      totalAmount,
+      totalAmount
     });
   } catch (err) {
     res.status(500).json({ error: 'Scraping error', details: err.message });
